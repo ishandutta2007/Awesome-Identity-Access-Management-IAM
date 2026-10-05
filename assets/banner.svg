@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="50%" stop-color="#1e1b4b" />
+      <stop offset="100%" stop-color="#311042" />
+    </linearGradient>
+
+    <!-- Text Glow -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <!-- Accent Gradient -->
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="50%" stop-color="#818cf8" />
+      <stop offset="100%" stop-color="#c084fc" />
+    </linearGradient>
+
+    <!-- Shield Glow -->
+    <filter id="shieldGlow">
+      <feDropShadow dx="0" dy="0" stdDeviation="8" flood-color="#818cf8" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <style>
+    .title { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-weight: 800; font-size: 42px; fill: #ffffff; }
+    .subtitle { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-weight: 500; font-size: 20px; fill: #cbd5e1; }
+    .badge-text { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-weight: 600; font-size: 13px; fill: #38bdf8; }
+
+    /* Animated background elements placed safely behind text */
+    @keyframes pulseRing {
+      0% { transform: scale(0.98); opacity: 0.3; }
+      50% { transform: scale(1.03); opacity: 0.7; }
+      100% { transform: scale(0.98); opacity: 0.3; }
+    }
+
+    @keyframes floatParticle {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    @keyframes dashStream {
+      to { stroke-dashoffset: -40; }
+    }
+
+    .pulsing-ring { transform-origin: 1050px 160px; animation: pulseRing 6s infinite ease-in-out; }
+    .floating-node { animation: floatParticle 4s infinite ease-in-out; }
+    .stream-line { stroke-dasharray: 8 8; animation: dashStream 2s linear infinite; }
+  </style>
+
+  <!-- Background -->
+  <rect width="1200" height="320" rx="16" fill="url(#bgGrad)" />
+
+  <!-- Background Grid & Connection Lines (Behind Foreground Text) -->
+  <g opacity="0.15">
+    <path d="M0 80 H1200 M0 160 H1200 M0 240 H1200" stroke="#94a3b8" stroke-width="1" />
+    <path d="M200 0 V320 M400 0 V320 M600 0 V320 M800 0 V320 M1000 0 V320" stroke="#94a3b8" stroke-width="1" />
+  </g>
+
+  <!-- Animated Dynamic Flow Lines in Background Right -->
+  <g opacity="0.4">
+    <path class="stream-line" d="M 650 80 Q 800 20 950 160 T 1150 240" fill="none" stroke="#38bdf8" stroke-width="2" />
+    <path class="stream-line" d="M 600 240 Q 750 300 900 160 T 1180 80" fill="none" stroke="#c084fc" stroke-width="2" />
+  </g>
+
+  <!-- Dynamic Security Graphic (Right side, non-overlapping with text on left) -->
+  <g transform="translate(920, 160)" class="floating-node">
+    <!-- Outer Pulsing Rings -->
+    <circle r="110" fill="none" stroke="#818cf8" stroke-width="1.5" class="pulsing-ring" opacity="0.4" />
+    <circle r="85" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="6 6" />
+
+    <!-- Central Security Shield Emblem -->
+    <path d="M 0 -45 L 35 -25 V 15 C 35 40 0 55 0 55 C 0 55 -35 40 -35 15 V -25 Z" fill="#1e1b4b" stroke="url(#accentGrad)" stroke-width="4" filter="url(#shieldGlow)" />
+    
+    <!-- Lock Keyhole Icon inside Shield -->
+    <circle cx="0" cy="-5" r="8" fill="#38bdf8" />
+    <path d="M -4 -3 H 4 L 6 18 H -6 Z" fill="#38bdf8" />
+  </g>
+
+  <!-- Foreground Content (Left Aligned for Crystal Clarity & Visibility) -->
+  <g transform="translate(70, 0)">
+    <!-- Category Pill Badge -->
+    <g transform="translate(0, 50)">
+      <rect width="250" height="32" rx="16" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" opacity="0.9" />
+      <text x="125" y="21" text-anchor="middle" class="badge-text">🔐 SECURITY &amp; IDENTITY ECOSYSTEM</text>
+    </g>
+
+    <!-- Main Title -->
+    <text x="0" y="135" class="title" filter="url(#glow)">Awesome Identity &amp; Access</text>
+    <text x="0" y="185" class="title" fill="url(#accentGrad)">Management (IAM)</text>
+
+    <!-- Subtitle -->
+    <text x="0" y="232" class="subtitle">A curated directory of Enterprise SaaS IAM Platforms &amp; Self-Hosted Open-Source Solutions</text>
+
+    <!-- Tech Tags / Key Use Cases -->
+    <g transform="translate(0, 260)">
+      <text x="0" y="16" fill="#94a3b8" font-family="system-ui" font-size="14" font-weight="600">
+        OAuth2 • OpenID Connect • SAML 2.0 • Zero Trust • Directory Services • Passkeys &amp; MFA • Identity Governance
+      </text>
+    </g>
+  </g>
+</svg>
